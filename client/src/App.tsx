@@ -1,11 +1,18 @@
-import React from 'react';
-import BaseApi from './Baseapi';
+import WebApp from '@twa-dev/sdk';
+import user from './api/User';
+import { useEffect } from 'react';
 
 const App = () => {
-  const {} = BaseApi.useCheckQuery(undefined);
+  const [trigger, { data }] = user.LoginUser();
+  console.log(WebApp.initDataUnsafe.user?.first_name);
+
+  useEffect(()=>{
+    trigger({init:WebApp.initData});
+  },[trigger]);
+
   return (
     <div>
-      <p className=''>This was a mini app</p>
+      <p className='text-white'>This was a mini app</p>
     </div>
   );
 };

@@ -4,9 +4,14 @@
     "cors": "^2.8.5",
     "express": "^5.1.0"
   },
+  "scripts": {
+    "dev": "tsnd --respawn ./src/index.ts",
+    "push": "npx prisma db push"
+  },
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
-    "prisma": "^6.11.0"
+    "prisma": "^6.11.0",
+    "ts-node-dev": "^2.0.0"
   }
 }

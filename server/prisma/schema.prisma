@@ -11,4 +11,11 @@ datasource db {
 model user {
   id Int @id @default(autoincrement())
   name String
+  username String @unique
+  tgId String @unique
+  balance Int @default(0)
+  referBy String?
+  referCode String
+  joinedAt DateTime @default(now())
+  lastSeenAt DateTime?
 }

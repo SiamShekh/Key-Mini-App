@@ -6,11 +6,7 @@ const BaseApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:3000"
     }),
-    endpoints: (arg) => ({
-        check: arg.query({
-            query: () => '/'
-        })
-    })
+    endpoints: () => ({})
 });
 
 export default BaseApi;
