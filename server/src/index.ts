@@ -1,9 +1,11 @@
 import express from "express";
 import { PrismaClient } from "../generated/prisma";
 import cors from "cors";
+import Utility from "./utils/Utilite";
+import MainRoute from "./routes/main.route";
 
-const app = express();
-const prisma = new PrismaClient();
+export const app = express();
+export const prisma = new PrismaClient();
 
 app.use(cors({
     origin: '*'
@@ -11,17 +13,17 @@ app.use(cors({
 
 app.use(express.json());
 
-app.post("/login", async (req, res) => {
-    try {
-        console.log(req?.body);
-        
-    } catch (error) {
-        console.log(error);
-    }
 
-    res.send("Hello world")
-})
+app.get("/", Utility.CatchAsync(async (req, res) => {
+    res.send({
+        code: 200,
+        msg: "Server is runing",
+        data:[]
+    })
+}))
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server is listing ${process.env.PORT}`);
-})
+app.use(MainRoute);
+
+app.use(Utility.Error_Handler);
+app.use(Utility.NotFound);
+
