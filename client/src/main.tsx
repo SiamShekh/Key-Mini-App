@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { Provider } from 'react-redux'
 import Store from './Store.tsx'
-import WebApp from '@twa-dev/sdk'
 import { RouterProvider } from 'react-router-dom'
 import Routes from './routes.tsx'
+import { init } from '@telegram-apps/sdk'
 
-const isTelegram = WebApp.platform;
-const theme = isTelegram === "unknown" ? "" : "dark";
+init();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <div data-theme={theme} className="min-h-screen">
+    <div className="min-h-screen">
       <Provider store={Store}>
         <RouterProvider router={Routes} />
       </Provider>

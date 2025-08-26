@@ -10,11 +10,12 @@ const create_user = CatchAsync(async (req, res) => {
     }
 
     if (!isValid(key, process.env.BOT_TOKEN as string)) {
-        throw new Error("not come from authrazed source.");
+        throw new Error("Unknown traffic");
     }
 
     const parseValue = parse(key);
-
+    console.log(parseValue);
+    
     const tx = await prisma.$transaction(async (tx) => {
         const user = await prisma.user.findFirst({
             where: {
