@@ -1,8 +1,9 @@
+import { Outlet } from "react-router-dom";
 
 const AppLayout = () => {
     return (
-        <div>
-            
+        <div data-theme="black" className="min-h-screen px-3">
+            <Outlet/>
         </div>
     );
 };
