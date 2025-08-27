@@ -1,39 +1,54 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import money_flying from "../assets/money_flying.gif";
+import { miniApp } from "@telegram-apps/sdk";
 
 const Introduction = () => {
-    const image_blur = useRef(null);
+    const text_count = useRef<HTMLParagraphElement | null>(null);
 
     useEffect(() => {
-        gsap.fromTo(image_blur.current,
-            {
-                filter: "blur(10px)",
+        const obj = { val: 0 };
+        gsap.to(obj, {
+            val: 400, // ending value
+            duration: 2, // seconds
+            ease: "none", // linear (no easing)
+            onUpdate: () => {
+                if (text_count.current) {
+                    text_count.current.textContent = Math.floor(obj.val).toString();
+                }
             },
-            {
-                filter: "blur(0px)",
-                borderBottomLeftRadius: "24px",
-                borderBottomRightRadius: "24px",
-                objectFit: "cover",
-                duration: 2,
-                ease: "power1.out"
-            }
-        )
+        });
+    }, [])
+
+    useEffect(() => {
+        if (miniApp.mountSync.isAvailable() && !miniApp.isMounted()) {
+            miniApp.mountSync();
+        }
+
+        if (miniApp.setHeaderColor.isAvailable()) {
+            miniApp.setHeaderColor('#d6f400');
+        }
+
+        if (miniApp.setBottomBarColor.isAvailable()) {
+            miniApp.setBottomBarColor('#000000');
+        }
     }, [])
 
     return (
         <div className="min-h-screen" data-theme="black">
-            <img
-                className="w-80 mx-auto"
-                src={money_flying}
-                alt="coolest image"
-                ref={image_blur} />
+            <div
+                className="h-80 w-full flex items-center justify-center text-black flex-col font-monda bg-[#d6f400] object-cover rounded-b-2xl"
+            >
+                <p
+                    ref={text_count}
+                    className="text-8xl font-black">400</p>
+                <p className="text-2xl">COOL</p>
+            </div>
 
-            <div className="p-3 absolute bottom-0">
-                <p className="font-bebas text-4xl">Skill beats luck - </p>
-                <p className="font-bebas text-6xl bg-gradient-to-tr from-[#D6F400] to-[#FFFFFF] text-transparent bg-clip-text">when consistency fuels it.</p>
+            <div className="p-3 absolute bottom-0 w-full">
+                <p className="font-bebas text-4xl text-white text-center">Welcome to the party</p>
+                <p className="font-bebas mb-5 text-6xl text-center bg-gradient-to-tr from-[#D6F400] to-[#FFFFFF] text-transparent bg-clip-text">take a bribe.</p>
 
-                <button className="bg-white cursor-pointer text-black p-2 w-full font-montserrat font-medium rounded-md text-xl">Get start</button>
+                <button className="bg-white cursor-pointer text-black p-2 w-full font-opensans rounded-md text-xl">Get start</button>
             </div>
         </div>
     );

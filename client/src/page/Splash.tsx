@@ -17,16 +17,9 @@ const Splash = () => {
     }, [trigger, initData]);
 
     useEffect(() => {
-        if (miniApp.mount.isAvailable() && (miniApp.isMounted() === true)) {
-            miniApp.mount();
+        if (miniApp.mountSync.isAvailable() && !miniApp.isMounted()) {
+            miniApp.mountSync();
         }
-        // else{
-        //     console.log('mount available: ', miniApp.mount.isAvailable());
-        //     console.log('mini app available: ', miniApp.isMounted());
-
-        //     console.log('not mounted');
-
-        // }
 
         if (miniApp.setHeaderColor.isAvailable()) {
             miniApp.setHeaderColor('#000000');
@@ -40,7 +33,10 @@ const Splash = () => {
     useEffect(() => {
         if (data?.token) {
             sessionStorage.setItem("token", data?.token);
-            navigate("/intro", { replace: true });
+
+            setTimeout(() => {
+                navigate("/intro", { replace: true });
+            }, 1000);
         }
     }, [data?.token, navigate]);
 
