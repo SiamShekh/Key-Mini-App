@@ -14,7 +14,6 @@ const create_user = CatchAsync(async (req, res) => {
     }
 
     const parseValue = parse(key);
-    console.log(parseValue);
     
     const tx = await prisma.$transaction(async (tx) => {
         const user = await prisma.user.findFirst({
