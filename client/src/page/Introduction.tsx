@@ -1,23 +1,28 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { miniApp } from "@telegram-apps/sdk";
+import { ContextValues } from "../utils/ContextApi";
 
 const Introduction = () => {
     const text_count = useRef<HTMLParagraphElement | null>(null);
+    const values = useContext(ContextValues);
+    console.log(values?.user?.data?.balance);
 
     useEffect(() => {
-        const obj = { val: 0 };
-        gsap.to(obj, {
-            val: 400, // ending value
-            duration: 2, // seconds
-            ease: "none", // linear (no easing)
-            onUpdate: () => {
-                if (text_count.current) {
-                    text_count.current.textContent = Math.floor(obj.val).toString();
-                }
-            },
-        });
-    }, [])
+        if (!values?.user?.isLoading) {
+            const obj = { val: 0 };
+            gsap.to(obj, {
+                val: values?.user?.data?.balance, // ending value
+                duration: 2, // seconds
+                ease: "none", // linear (no easing)
+                onUpdate: () => {
+                    if (text_count.current) {
+                        text_count.current.textContent = Math.floor(obj.val).toString();
+                    }
+                },
+            });
+        }
+    }, [values])
 
     useEffect(() => {
         if (miniApp.mountSync.isAvailable() && !miniApp.isMounted()) {

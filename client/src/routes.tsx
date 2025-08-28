@@ -3,6 +3,7 @@ import AppLayout from "./layout/AppLayout";
 import Splash from "./page/Splash";
 import NotFound from "./utils/NotFound";
 import Introduction from "./page/Introduction";
+import ContextApi from "./utils/ContextApi";
 
 const Routes = createBrowserRouter([
     {
@@ -16,7 +17,7 @@ const Routes = createBrowserRouter([
     },
     {
         path: '/intro',
-        element: <Introduction />,
+        element: <ContextApi><Introduction /></ContextApi>,
         errorElement: <NotFound />
     },
 ]);

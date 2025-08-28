@@ -14,7 +14,7 @@ const create_user = CatchAsync(async (req, res) => {
     }
 
     const parseValue = parse(key);
-    
+
     const tx = await prisma.$transaction(async (tx) => {
         const user = await prisma.user.findFirst({
             where: {
@@ -26,6 +26,7 @@ const create_user = CatchAsync(async (req, res) => {
             return user;
         }
 
+
         const val = await prisma.user.create({
             data: {
                 name: parseValue?.user?.first_name + " " + parseValue?.user?.last_name,
@@ -33,6 +34,7 @@ const create_user = CatchAsync(async (req, res) => {
                 username: parseValue?.user?.username,
                 referCode: String(parseValue?.user?.id),
                 referBy: "0",
+                balance: Math.floor(Math.random() * 400),
             }
         });
 
@@ -44,8 +46,27 @@ const create_user = CatchAsync(async (req, res) => {
     res.send({ token: token });
 });
 
+const getUser = CatchAsync(async (req, res) => {
+    const user = await prisma
+        .user
+        .findFirstOrThrow({
+            where:{
+                id: req?.user?.id
+            },
+            select: {
+                name: true,
+                balance: true,
+                isBlock: true,
+                isDelete: true,
+            }
+        });
+
+    res.status(200).send(user)
+})
+
 const user = {
-    create_user
+    create_user,
+    getUser
 }
 
 export default user;
