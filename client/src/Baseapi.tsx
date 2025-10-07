@@ -5,11 +5,10 @@ const BaseApi = createApi({
     reducerPath: "api",
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:3000",
-        prepareHeaders(headers) {
-            headers.append("authorization", sessionStorage.getItem("token") as string)
-        },
+        credentials: "include"
     }),
     endpoints: () => ({}),
+    tagTypes: ["user"]
 });
 
 export default BaseApi;

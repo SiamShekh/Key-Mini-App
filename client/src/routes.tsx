@@ -4,11 +4,18 @@ import Splash from "./page/Splash";
 import NotFound from "./utils/NotFound";
 import Introduction from "./page/Introduction";
 import ContextApi from "./utils/ContextApi";
+import Home from "./page/Home";
 
 const Routes = createBrowserRouter([
     {
         path: '/app',
-        element: <AppLayout />
+        element: <AppLayout />,
+        children: [
+            {
+                index: true,
+                element: <Home />
+            }
+        ]
     },
     {
         path: '/',

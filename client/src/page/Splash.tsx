@@ -31,14 +31,18 @@ const Splash = () => {
     }, [])
 
     useEffect(() => {
-        if (data?.token) {
-            sessionStorage.setItem("token", data?.token);
-
-            setTimeout(() => {
-                navigate("/intro", { replace: true });
-            }, 1000);
+        if (data?.status) {
+            if (!data?.isIntro) {
+                setTimeout(() => {
+                    navigate("/intro", { replace: true });
+                }, 1000);
+            }else{
+                setTimeout(() => {
+                    navigate("/app", { replace: true });
+                }, 1000);
+            }
         }
-    }, [data?.token, navigate]);
+    }, [data?.status,navigate, data?.isIntro]);
 
     return (
         <div data-theme="black" className="h-screen overflow-hidden relative">

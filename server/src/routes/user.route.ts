@@ -4,7 +4,8 @@ import { UserVaildation } from "../utils/Middleware";
 
 const UserRoute = Router();
 UserRoute.post("/login", user.create_user);
-UserRoute.get("/me",UserVaildation, user.getUser);
+UserRoute.get("/me", UserVaildation, user.getUser);
+UserRoute.patch("/intro", UserVaildation, user.introShowed);
 
 
 export default UserRoute;
