@@ -16,6 +16,7 @@ model user {
   balance       Int       @default(0)
   referBy       String?
   referCode     String
+  publicKey     String?
   joinedAt      DateTime  @default(now())
   lastSeenAt    DateTime?
   isIntroShowed Boolean   @default(false)

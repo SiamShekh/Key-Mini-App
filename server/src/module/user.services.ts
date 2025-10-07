@@ -83,12 +83,51 @@ const introShowed = CatchAsync(async (req, res) => {
     res.status(200).json({
         status: result?.isIntroShowed
     });
-})
+});
+
+const storeAddress = CatchAsync(async (req, res) => {
+    const { publicKey } = req.body;
+
+    if (!publicKey) {
+        throw new Error("Public key not found.");
+    }
+
+    const result = await prisma.$transaction(async (transactionClient) => {
+        const addressExist = await transactionClient.user.findFirst({
+            where: {
+                publicKey
+            }
+        });
+
+        if (addressExist) {
+            if (addressExist.id === req.user.id) {
+                return addressExist;
+            } else {
+                return null;
+            }
+        }
+
+        const result = await transactionClient.user.update({
+            where: {
+                id: req.user.id
+            },
+            data: {
+                publicKey
+            }
+        });
+        return result;
+    })
+
+    res.status(200).json({
+        status: result?.publicKey ? true : false
+    });
+});
 
 const user = {
     create_user,
     getUser,
-    introShowed
+    introShowed,
+    storeAddress
 }
 
 export default user;

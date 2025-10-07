@@ -24,13 +24,22 @@ const UserEndpoint = BaseApi.injectEndpoints({
             }),
             invalidatesTags: ["user"]
         }),
+        StoreUserWallet: builder.mutation({
+            query: ({publicKey})=>({
+                url: "/user/wallet",
+                method: "PATCH",
+                body: {publicKey}
+            }),
+            invalidatesTags: ["user"]
+        }),
     })
 });
 
 const user = {
     LoginUser: UserEndpoint.useLoginUserMutation,
     getUser: UserEndpoint.useGetUserQuery,
-    UserIntro: UserEndpoint.useUserIntroMutation
+    UserIntro: UserEndpoint.useUserIntroMutation,
+    StoreUserWallet: UserEndpoint.useStoreUserWalletMutation
 }
 
 export default user;

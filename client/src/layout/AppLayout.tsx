@@ -11,7 +11,7 @@ const AppLayout = () => {
         }
 
         if (miniApp.setHeaderColor.isAvailable()) {
-            miniApp.setHeaderColor('#000000');
+            miniApp.setHeaderColor('#FEE685');
         }
 
         if (miniApp.setBottomBarColor.isAvailable()) {
@@ -22,9 +22,7 @@ const AppLayout = () => {
     return (
         <div data-theme="black" className="min-h-screen px-3 relative">
             <Header />
-            
             <Outlet />
-
             <BottomDock />
         </div>
     );

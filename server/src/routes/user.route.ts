@@ -6,6 +6,7 @@ const UserRoute = Router();
 UserRoute.post("/login", user.create_user);
 UserRoute.get("/me", UserVaildation, user.getUser);
 UserRoute.patch("/intro", UserVaildation, user.introShowed);
+UserRoute.patch("/wallet", UserVaildation, user.storeAddress);
 
 
 export default UserRoute;

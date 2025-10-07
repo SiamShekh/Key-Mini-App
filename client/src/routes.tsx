@@ -5,11 +5,19 @@ import NotFound from "./utils/NotFound";
 import Introduction from "./page/Introduction";
 import ContextApi from "./utils/ContextApi";
 import Home from "./page/Home";
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
 const Routes = createBrowserRouter([
     {
         path: '/app',
-        element: <AppLayout />,
+        element:
+            <TonConnectUIProvider
+                manifestUrl={"https://api.ascentraico.com/manifest"}
+                restoreConnection
+                actionsConfiguration={{ twaReturnUrl: "https://t.me/SiamDevBot/time" }}>
+                <AppLayout />
+            </TonConnectUIProvider>
+        ,
         children: [
             {
                 index: true,
