@@ -31,14 +31,12 @@ const Splash = () => {
     }, [])
 
     useEffect(() => {
-        if (data?.token) {
-            sessionStorage.setItem("token", data?.token);
-
+        if (data?.status) {
             setTimeout(() => {
                 navigate("/intro", { replace: true });
             }, 1000);
         }
-    }, [data?.token, navigate]);
+    }, [data?.status, navigate]);
 
     return (
         <div data-theme="black" className="h-screen overflow-hidden relative">

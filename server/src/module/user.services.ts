@@ -43,14 +43,20 @@ const create_user = CatchAsync(async (req, res) => {
 
     const token = jwt.sign(tx, process.env.SECRET as string);
 
-    res.send({ token: token });
+    res.cookie("auth", token, {
+        httpOnly: true,
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 15,
+        sameSite: "none",
+    }).send({ status: true });
 });
+
 
 const getUser = CatchAsync(async (req, res) => {
     const user = await prisma
         .user
         .findFirstOrThrow({
-            where:{
+            where: {
                 id: req?.user?.id
             },
             select: {
