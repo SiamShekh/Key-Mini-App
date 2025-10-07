@@ -9,7 +9,7 @@ export const app = express();
 export const prisma = new PrismaClient();
 
 app.use(cors({
-    origin: [`https://192.168.0.100:5173`],
+    origin: [`https://192.168.0.103:5173`],
     credentials: true
 }));
 

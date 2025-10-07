@@ -9,15 +9,16 @@ datasource db {
 }
 
 model user {
-  id         Int       @id @default(autoincrement())
-  name       String
-  username   String?
-  tgId       String    @unique
-  balance    Int       @default(0)
-  referBy    String?
-  referCode  String
-  joinedAt   DateTime  @default(now())
-  lastSeenAt DateTime?
-  isBlock    Boolean   @default(false)
-  isDelete   Boolean   @default(false)
+  id            Int       @id @default(autoincrement())
+  name          String
+  username      String?
+  tgId          String    @unique
+  balance       Int       @default(0)
+  referBy       String?
+  referCode     String
+  joinedAt      DateTime  @default(now())
+  lastSeenAt    DateTime?
+  isIntroShowed Boolean   @default(false)
+  isBlock       Boolean   @default(false)
+  isDelete      Boolean   @default(false)
 }

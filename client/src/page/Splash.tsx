@@ -32,11 +32,17 @@ const Splash = () => {
 
     useEffect(() => {
         if (data?.status) {
-            setTimeout(() => {
-                navigate("/intro", { replace: true });
-            }, 1000);
+            if (!data?.isIntro) {
+                setTimeout(() => {
+                    navigate("/intro", { replace: true });
+                }, 1000);
+            }else{
+                setTimeout(() => {
+                    navigate("/app", { replace: true });
+                }, 1000);
+            }
         }
-    }, [data?.status, navigate]);
+    }, [data?.status,navigate, data?.isIntro]);
 
     return (
         <div data-theme="black" className="h-screen overflow-hidden relative">

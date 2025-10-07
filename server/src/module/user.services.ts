@@ -48,9 +48,8 @@ const create_user = CatchAsync(async (req, res) => {
         secure: true,
         maxAge: 1000 * 60 * 60 * 15,
         sameSite: "none",
-    }).send({ status: true });
+    }).send({ status: true, isIntro: tx.isIntroShowed });
 });
-
 
 const getUser = CatchAsync(async (req, res) => {
     const user = await prisma
@@ -64,15 +63,32 @@ const getUser = CatchAsync(async (req, res) => {
                 balance: true,
                 isBlock: true,
                 isDelete: true,
+                isIntroShowed: true
             }
         });
 
     res.status(200).send(user)
+});
+
+const introShowed = CatchAsync(async (req, res) => {
+    const result = await prisma.user.update({
+        where: {
+            id: req.user.id
+        },
+        data: {
+            isIntroShowed: true
+        }
+    });
+
+    res.status(200).json({
+        status: result?.isIntroShowed
+    });
 })
 
 const user = {
     create_user,
-    getUser
+    getUser,
+    introShowed
 }
 
 export default user;
