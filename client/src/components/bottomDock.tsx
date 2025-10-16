@@ -32,7 +32,7 @@ const BottomDock = () => {
         },
     ]
     return (
-        <div className="dock bg-white/2 text-neutral-content">
+        <div className="dock bg-white/2 text-neutral-content backdrop-blur-xs">
             {dock.map((item,i) => (
                 <button key={i} className={`${location?.pathname === item?.href ? `opacity-100` : 'opacity-20'}`}>
                     <div>

@@ -12,3 +12,7 @@
   --font-roboto: "Roboto", "'sans-serif";
   --font-tektur: "Tektur", "cursive";
 }
+
+* {
+  scrollbar-width: none;
+}

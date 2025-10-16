@@ -23,7 +23,7 @@ const AppLayout = () => {
     return (
         <div data-theme="black" className="min-h-screen relative">
             <Header />
-            <div className="px-3">
+            <div className="px-3 pb-16">
                 <Outlet />
             </div>
             <BottomDock />

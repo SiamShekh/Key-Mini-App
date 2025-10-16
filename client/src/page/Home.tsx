@@ -1,14 +1,23 @@
 import { FaXTwitter } from "react-icons/fa6";
 import lock from "../assets/lock_icon.png";
 import { FaCheck, FaTelegram } from "react-icons/fa";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 const Home = () => {
     return (
         <div className="relative">
-            <img src={lock} alt="lock " className="size-40 mx-auto mt-14" />
-            <p className="text-4xl text-center font-opensans mt-5">3,000 <span className="text-xl opacity-50">🔑</span></p>
+            <img src={lock} alt="lock " className="size-40 mx-auto mt-5" />
+            <div className="flex items-end justify-center gap-1">
+                <p className="text-5xl text-center font-monda font-bold mt-5 text-white">3,000</p>
+                <p className="text-xl font-bold font-roboto">KEY</p>
+            </div>
 
-            <div className="bg-white/3 rounded-xl mt-14 font-monda border-white/2 border px-3 py-2 w-full flex items-center gap-3 justify-between">
+            <div className="flex items-center justify-center mt-3 opacity-60 ">
+                <p className="uppercase font-roboto text-sm">Leaderboard</p>
+                <MdKeyboardArrowRight />
+            </div>
+
+            <div className="bg-white/3 rounded-xl mt-10 font-monda border-white/2 border px-3 py-2 w-full flex items-center gap-3 justify-between">
                 <div className="flex items-center gap-3 ">
                     <FaXTwitter className="text-2xl" />
                     <div>
