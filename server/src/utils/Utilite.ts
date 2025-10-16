@@ -6,14 +6,14 @@ export const CatchAsync = (fx: RequestHandler) => {
 
 const Error_Handler = (err: any, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {
-        res.send({
+        res.status(400).send({
             code: 400,
             msg: err?.message,
             error: err,
             data: []
         });
     } else {
-        res.send({
+        res.status(400).send({
             code: 400,
             msg: 'Something went wrong',
             error: err,

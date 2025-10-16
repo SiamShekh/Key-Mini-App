@@ -8,9 +8,6 @@ const Header = () => {
     const [tonUi] = useTonConnectUI();
     const wallet = useTonWallet();
     const storeWallet = user.StoreUserWallet();
-    console.log(wallet?.account?.publicKey);
-
-    // console.log(tonUi.connected);
 
     useEffect(() => {
         if (wallet?.account?.publicKey && tonUi.connected) {
@@ -18,7 +15,7 @@ const Header = () => {
         }
     }, [
         wallet?.account?.publicKey,
-        tonUi.connected
+        tonUi.connected,
     ]);
 
     useEffect(() => {
@@ -26,8 +23,9 @@ const Header = () => {
             tonUi.disconnect();
         } else if (storeWallet[1]?.status === QueryStatus.rejected) {
             tonUi.disconnect();
+            
         }
-    }, [storeWallet, tonUi])
+    }, [storeWallet, tonUi]);
 
     return (
         <div className="fixed top-0 inset-0">

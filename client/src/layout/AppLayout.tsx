@@ -5,6 +5,7 @@ import BottomDock from "../components/bottomDock";
 import Header from "../components/header";
 
 const AppLayout = () => {
+    
     useEffect(() => {
         if (miniApp.mountSync.isAvailable() && !miniApp.isMounted()) {
             miniApp.mountSync();
