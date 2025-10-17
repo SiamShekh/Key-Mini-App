@@ -6,6 +6,7 @@ import Introduction from "./page/Introduction";
 import ContextApi from "./utils/ContextApi";
 import Home from "./page/Home";
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
+import Leaderboard from "./page/Leaderboard";
 
 const Routes = createBrowserRouter([
     {
@@ -22,7 +23,11 @@ const Routes = createBrowserRouter([
             {
                 index: true,
                 element: <Home />
-            }
+            },
+            {
+                path: 'leaderboard',
+                element: <Leaderboard />
+            },
         ]
     },
     {

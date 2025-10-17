@@ -1,8 +1,10 @@
-import { FaGamepad, FaHome,FaPeopleCarry, FaEye,FaMoneyBillWave } from 'react-icons/fa';
-import { useLocation } from 'react-router-dom';
+import { FaGamepad, FaHome, FaPeopleCarry, FaEye, FaMoneyBillWave } from 'react-icons/fa';
+import { MdLeaderboard } from 'react-icons/md';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const BottomDock = () => {
     const location = useLocation();
+    const navigate = useNavigate();
 
     const dock = [
         {
@@ -16,9 +18,9 @@ const BottomDock = () => {
             icon: <FaGamepad />
         },
         {
-            href: "/app/refer",
-            title: "Refer",
-            icon: <FaPeopleCarry />
+            href: "/app/leaderboard",
+            title: "Leaderboard",
+            icon: <MdLeaderboard />
         },
         {
             href: "/app/identity",
@@ -33,8 +35,12 @@ const BottomDock = () => {
     ]
     return (
         <div className="dock bg-white/2 text-neutral-content backdrop-blur-xs">
-            {dock.map((item,i) => (
-                <button key={i} className={`${location?.pathname === item?.href ? `opacity-100` : 'opacity-20'}`}>
+            {dock.map((item, i) => (
+                <button
+                    onClick={() => navigate(item?.href)}
+                    type='button'
+                    key={i}
+                    className={`${location?.pathname === item?.href ? `opacity-100` : 'opacity-20'}`}>
                     <div>
                         {item?.icon}
                     </div>
