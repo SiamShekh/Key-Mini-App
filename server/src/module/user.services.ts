@@ -88,7 +88,6 @@ const introShowed = CatchAsync(async (req, res) => {
 const storeAddress = CatchAsync(async (req, res) => {
     const { publicKey } = req.body;
 
-    throw new Error("Public key not found.");
     if (!publicKey) {
         throw new Error("Public key not found.");
     }
@@ -116,6 +115,7 @@ const storeAddress = CatchAsync(async (req, res) => {
                 publicKey
             }
         });
+        
         return result;
     })
 

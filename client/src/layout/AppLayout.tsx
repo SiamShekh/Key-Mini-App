@@ -5,7 +5,7 @@ import BottomDock from "../components/bottomDock";
 import Header from "../components/header";
 
 const AppLayout = () => {
-    
+
     useEffect(() => {
         if (miniApp.mountSync.isAvailable() && !miniApp.isMounted()) {
             miniApp.mountSync();
@@ -21,9 +21,11 @@ const AppLayout = () => {
     }, [])
 
     return (
-        <div data-theme="black" className="min-h-screen px-3 relative">
+        <div data-theme="black" className="min-h-screen relative">
             <Header />
-            <Outlet />
+            <div className="px-3 pb-16">
+                <Outlet />
+            </div>
             <BottomDock />
         </div>
     );
