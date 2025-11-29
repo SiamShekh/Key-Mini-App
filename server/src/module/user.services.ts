@@ -1,4 +1,5 @@
 import { prisma } from "..";
+import Config from "../config";
 import { CatchAsync } from "../utils/Utilite";
 import { isValid, parse } from '@telegram-apps/init-data-node';
 import jwt from "jsonwebtoken";
@@ -9,7 +10,7 @@ const create_user = CatchAsync(async (req, res) => {
         throw new Error("init key is not found");
     }
 
-    if (!isValid(key, process.env.BOT_TOKEN as string)) {
+    if (!isValid(key, Config.bot_token as string)) {
         throw new Error("Unknown traffic");
     }
 
@@ -40,15 +41,8 @@ const create_user = CatchAsync(async (req, res) => {
 
         return val;
     });
-
-    const token = jwt.sign(tx, process.env.SECRET as string);
-
-    res.cookie("auth", token, {
-        httpOnly: true,
-        secure: true,
-        maxAge: 1000 * 60 * 60 * 15,
-        sameSite: "none",
-    }).send({ status: true, isIntro: tx.isIntroShowed });
+    
+    res.json({ status: true, isIntro: tx.isIntroShowed });
 });
 
 const getUser = CatchAsync(async (req, res) => {
