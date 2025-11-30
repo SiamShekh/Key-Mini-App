@@ -31,7 +31,7 @@ const Header = () => {
     }, [storeWallet, tonUi]);
 
     return (
-        <div className="sticky top-0 inset-0">
+        <div className="sticky top-0 inset-0 z-50 md:hidden">
             <div className="bg-amber-200 p-3 rounded-b-2xl flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <img src={SemenEmoji} alt="Semen Emoji" className="w-8" />

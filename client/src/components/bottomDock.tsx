@@ -1,4 +1,4 @@
-import { FaGamepad, FaHome, FaPeopleCarry, FaEye, FaMoneyBillWave } from 'react-icons/fa';
+import { FaGamepad, FaHome, FaEye, FaMoneyBillWave } from 'react-icons/fa';
 import { MdLeaderboard } from 'react-icons/md';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -34,7 +34,7 @@ const BottomDock = () => {
         },
     ]
     return (
-        <div className="dock bg-white/2 text-neutral-content backdrop-blur-xs">
+        <div className="dock bg-white/2 text-neutral-content backdrop-blur-xs md:max-w-md md:bg-white/10 rounded-full mx-auto">
             {dock.map((item, i) => (
                 <button
                     onClick={() => navigate(item?.href)}

@@ -1,4 +1,5 @@
-import { initData } from '@telegram-apps/sdk';
+// import { initData } from '@telegram-apps/sdk';
+import { initData } from '@tma.js/sdk';
 import React from 'react';
 
 const Leaderboard = () => {

@@ -7,6 +7,7 @@ import ContextApi from "./utils/ContextApi";
 import Home from "./page/Home";
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import Leaderboard from "./page/Leaderboard";
+import LandingPage from "./layout/LandingPage";
 
 const Routes = createBrowserRouter([
     {
@@ -31,9 +32,13 @@ const Routes = createBrowserRouter([
         ]
     },
     {
-        path: '/',
+        path: '/splash',
         element: <Splash />,
         errorElement: <NotFound />
+    },
+    {
+        index: true,
+        element: <LandingPage />
     },
     {
         path: '/intro',

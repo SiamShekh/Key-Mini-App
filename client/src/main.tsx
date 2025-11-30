@@ -5,8 +5,8 @@ import { Provider } from 'react-redux'
 import Store from './Store.tsx'
 import { RouterProvider } from 'react-router-dom'
 import Routes from './routes.tsx'
-import { init } from '@telegram-apps/sdk'
 import { Toaster } from 'sonner'
+import { init } from '@tma.js/sdk'
 
 init();
 

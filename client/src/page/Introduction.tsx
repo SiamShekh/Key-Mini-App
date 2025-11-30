@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { miniApp } from "@telegram-apps/sdk";
 import { ContextValues } from "../utils/ContextApi";
 import { useNavigate } from "react-router-dom";
 import user from "../api/User";
 import { QueryStatus } from "@reduxjs/toolkit/query";
+import { miniApp } from '@tma.js/sdk';
 
 const Introduction = () => {
     const text_count = useRef<HTMLParagraphElement | null>(null);
@@ -29,15 +29,15 @@ const Introduction = () => {
     }, [values])
 
     useEffect(() => {
-        if (miniApp.mountSync.isAvailable() && !miniApp.isMounted()) {
-            miniApp.mountSync();
+      if (!miniApp.isMounted()) {
+            miniApp.mount();
         }
 
-        if (miniApp.setHeaderColor.isAvailable()) {
+        if (miniApp.setHeaderColor.supports('rgb')) {
             miniApp.setHeaderColor('#d6f400');
         }
 
-        if (miniApp.setBottomBarColor.isAvailable()) {
+        if (miniApp.setBottomBarColor.isSupported()) {
             miniApp.setBottomBarColor('#000000');
         }
     }, []);

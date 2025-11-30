@@ -1,21 +1,21 @@
-import { miniApp } from "@telegram-apps/sdk";
 import { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import BottomDock from "../components/bottomDock";
 import Header from "../components/header";
+import { miniApp } from "@tma.js/sdk";
 
 const AppLayout = () => {
 
     useEffect(() => {
-        if (miniApp.mountSync.isAvailable() && !miniApp.isMounted()) {
-            miniApp.mountSync();
+        if (!miniApp.isMounted()) {
+            miniApp.mount();
         }
 
-        if (miniApp.setHeaderColor.isAvailable()) {
+        if (miniApp.setHeaderColor.supports('rgb')) {
             miniApp.setHeaderColor('#FEE685');
         }
 
-        if (miniApp.setBottomBarColor.isAvailable()) {
+        if (miniApp.setBottomBarColor.isSupported()) {
             miniApp.setBottomBarColor('#000000');
         }
     }, [])

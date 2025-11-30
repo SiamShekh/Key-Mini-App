@@ -1,6 +1,6 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import { initData } from "@telegram-apps/sdk";
+import { initData } from "@tma.js/sdk";
 
 const BaseApi = createApi({
     reducerPath: "api",

@@ -1,27 +1,29 @@
 import user from "../api/User";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { miniApp, useRawInitData } from "@telegram-apps/sdk-react";
 import mr_cool from "../assets/mr_cool.gif";
 import money_flying from "../assets/money_flying.webp";
 import who_care_emoji from "../assets/who_care_emoji.webp";
 import silent_emoji from "../assets/silent_emoji.webp";
+import { initData, miniApp, viewport } from "@tma.js/sdk";
 
 const Splash = () => {
     const [trigger, { data }] = user.LoginUser();
     const navigate = useNavigate();
-    const initData = useRawInitData();
+    initData.restore();
+
+    viewport.requestFullscreen();
 
     useEffect(() => {
-        trigger({ key: initData });
+        trigger({ key: initData.raw() });
     }, [trigger, initData]);
 
     useEffect(() => {
-        if (miniApp.mountSync.isAvailable() && !miniApp.isMounted()) {
-            miniApp.mountSync();
+        if (!miniApp.isMounted()) {
+            miniApp.mount();
         }
 
-        if (miniApp.setHeaderColor.isAvailable()) {
+        if (miniApp.setHeaderColor.supports('rgb')) {
             miniApp.setHeaderColor('#000000');
         }
 
@@ -36,33 +38,33 @@ const Splash = () => {
                 setTimeout(() => {
                     navigate("/intro", { replace: true });
                 }, 1000);
-            }else{
+            } else {
                 setTimeout(() => {
                     navigate("/app", { replace: true });
                 }, 1000);
             }
         }
-    }, [data?.status,navigate, data?.isIntro]);
+    }, [data?.status, navigate, data?.isIntro]);
 
     return (
-        <div data-theme="black" className="h-screen overflow-hidden relative">
+        <div data-theme="black" className="h-screen overflow-hidden relative flex items-center justify-center">
             <img
-                className="absolute inset-0 z-0 blur-xs"
+                className="absolute inset-0 z-0 blur-xs md:hidden"
                 src={money_flying}
                 alt="money flying from sky" />
 
             <img
-                className="absolute inset-10 size-16 z-0 blur-xs"
+                className="absolute inset-10 size-16 z-0 blur-xs md:hidden"
                 src={who_care_emoji}
                 alt="i don't care emoji" />
 
             <img
-                className="absolute bottom-10 left-5 size-12 z-0 blur-xs"
+                className="absolute bottom-10 left-5 size-12 z-0 blur-xs md:hidden"
                 src={who_care_emoji}
                 alt="i don't care emoji" />
 
             <img
-                className="absolute bottom-20 right-5 size-12 z-0 blur-xs"
+                className="absolute bottom-20 right-5 size-12 z-0 blur-xs md:hidden"
                 src={silent_emoji}
                 alt="silent emoji" />
 
