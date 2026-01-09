@@ -3,6 +3,7 @@ import { prisma } from "..";
 import { CatchAsync } from "./Utilite";
 import Config from "../config";
 import { isValid, parse } from "@telegram-apps/init-data-node";
+import { Schema } from "yup";
 
 export const UserVaildation: RequestHandler = CatchAsync(async (req, res, next) => {
     const token = req?.headers?.authorization;
@@ -29,3 +30,14 @@ export const UserVaildation: RequestHandler = CatchAsync(async (req, res, next) 
     }
 })
 
+export const YupVaildationMiddleware = (schema: Schema) => {
+    return CatchAsync(async (req, res, next) => {
+        const value = await schema.validate(req.body,{
+            stripUnknown: true
+        });
+        
+        req.payload = value;
+
+        next();
+    });
+}

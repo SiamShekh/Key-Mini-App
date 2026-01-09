@@ -1,0 +1,1 @@
+1. When an admin creates data, it should be validated through middleware to ensure the user is coming from a valid source.

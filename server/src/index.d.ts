@@ -3,6 +3,7 @@ declare namespace Express {
         user: {
             id: number,
             tgId: string
-        }
+        },
+        payload: any
     }
 }

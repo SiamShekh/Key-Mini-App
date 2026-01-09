@@ -10,10 +10,11 @@ export const app = express();
 const connectionString = `${process.env.DATABASE_URL}`
 
 const adapter = new PrismaPg({ connectionString })
-export const prisma = new PrismaClient({  });
+export const prisma = new PrismaClient({ adapter });
+
 
 app.use(cors({
-    origin: [`https://192.168.0.101:5173`, `https://192.168.56.1:5173`],
+    origin: [`https://192.168.0.102:5173`, `https://192.168.56.1:5173`],
     credentials: true
 }));
 

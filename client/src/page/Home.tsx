@@ -70,12 +70,32 @@ const Home = () => {
 
                 <div className="relative bg-black border-blue-500/20 rounded-lg font-monda h-fit border-2 p-3 w-full flex items-center gap-3 justify-between">
                     <div className="">
-                        <p className="font-montserrat font-semibold">Subscribe Offical</p>
+                        <p className="font-montserrat font-semibold">Watch ads</p>
                         <div className="p-2 bg-white/10 w-fit rounded-full">
                             <FaTelegramPlane className="text-xl" />
                         </div>
                     </div>
-                    <div className="bg-white/10 px-5 w-24 py-2 text-center cursor-pointer rounded-full">Go</div>
+                    <div
+                        onClick={async () => {
+
+                            try {
+                                //@ts-ignore
+                                const ads = await show_10269970();
+                                if (ads.status=== "fulfilled") {
+                                    // call api and give reward to the user
+                                    alert("ads watched");
+                                }
+                            } catch (error) {
+                                alert('Unable to load a ads')
+                            }
+
+                            // Rewarded interstitial
+                            //@ts-ignore
+
+
+
+                        }}
+                        className="bg-white/10 px-5 w-24 py-2 text-center cursor-pointer rounded-full">watch</div>
                 </div>
 
                 <div className="relative bg-black border-blue-500/20 rounded-lg mt-2 md:mt-0 font-monda h-fit border-2 p-3 w-full flex items-center gap-3 justify-between">

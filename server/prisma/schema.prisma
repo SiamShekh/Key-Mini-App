@@ -22,3 +22,32 @@ model user {
   isBlock       Boolean   @default(false)
   isDelete      Boolean   @default(false)
 }
+
+enum taskCategory {
+  telegram
+  twitter
+  youtube
+  facebook
+  others
+}
+
+model task {
+  id        Int          @id @default(autoincrement())
+  title     String
+  link      String
+  category  taskCategory
+  bgImage   String
+  isDelete  Boolean      @default(false)
+  isPause   Boolean      @default(false)
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model completedTask {
+  userId Int
+  taskId Int
+
+  createdAt DateTime @default(now())
+
+  @@id([userId, taskId])
+}
